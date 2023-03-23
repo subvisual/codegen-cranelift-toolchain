@@ -1,0 +1,24 @@
+name: 'Rustc Codegen Cranelift Toolchain'
+description: 'Github Action for https://github.com/bjorn3/rustc_codegen_cranelift'
+runs:
+  using: "composite"
+  steps:
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        profile: minimal
+        target: wasm32-unknown-unknown
+    - name: Clone cranelift
+      uses: actions/checkout@v3
+      with:
+        repository: bjorn3/rustc_codegen_cranelift
+        path: './rustc_codegen_cranelift'
+    - name: Move cranelift
+      run: >
+        mv rustc_codegen_cranelift /tmp/rustc_codegen_cranelift
+    - uses: Swatinem/rust-cache@v2
+    - name: Set-Up cranelift
+      working-directory: '/tmp/rustc_codegen_cranelift'
+      run: >
+        ./y.rs prepare && ./y.rs build && echo "$(pwd)/dist/" >> $GITHUB_PATH
+      shell: bash
