@@ -16,6 +16,7 @@ runs:
     - name: Move cranelift
       run: >
         mv rustc_codegen_cranelift /tmp/rustc_codegen_cranelift
+      shell: bash
     - uses: Swatinem/rust-cache@v2
     - name: Set-Up cranelift
       working-directory: '/tmp/rustc_codegen_cranelift'
