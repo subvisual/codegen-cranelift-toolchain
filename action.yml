@@ -1,5 +1,9 @@
 name: 'Rustc Codegen Cranelift Toolchain'
 description: 'Github Action for https://github.com/bjorn3/rustc_codegen_cranelift'
+author: 'finiam'
+branding:
+  icon: anchor
+  color: gray-dark
 runs:
   using: "composite"
   steps:
